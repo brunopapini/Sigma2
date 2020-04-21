@@ -1,0 +1,15 @@
+LICENSE.txt
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+django_dynamic_formsets.egg-info/PKG-INFO
+django_dynamic_formsets.egg-info/SOURCES.txt
+django_dynamic_formsets.egg-info/dependency_links.txt
+django_dynamic_formsets.egg-info/not-zip-safe
+django_dynamic_formsets.egg-info/top_level.txt
+docs/.gitkeep
+docs/usage-old.rst
+dynamic_formsets/__init__.py
+dynamic_formsets/apps.py
+dynamic_formsets/static/dynamic_formsets/jquery.formset.js

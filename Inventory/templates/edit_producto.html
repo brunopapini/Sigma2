@@ -1,0 +1,66 @@
+{% extends 'index.html' %}
+
+{% block body %}
+
+
+<div class="container-fluid ">
+	<form method = "POST">
+		 {% if form.errors %}
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <div class="alert alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                         </div>
+                     {% endfor %}
+                {% endfor %}
+             {% for error in form.non_field_errors %}
+                        <div class="alert alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                                 </div>
+                {% endfor %}
+            {% endif %}
+		<main role="main" class="container">
+      <div class=" mt-4 mb-8 starter-template">
+
+
+        <h4>Editar Producto <a >&nbsp </a>
+			{{ form.nombre.value}}
+			{{form.envase.value}}
+			{{form.procedencia.value}}</h4>
+
+
+
+        <p class=" mt-4 lead">
+
+	        {% csrf_token %}
+
+		        {% for field in form %}
+
+		            <div class= "form-group row">
+
+			            <label for= "{{field.name}}"
+
+			            class= "col-2 col-form-label">{{field.name|capfirst}}
+                        </label>
+
+			                    <div class= "col-10">
+
+				                {{ field }}
+
+			                    </div>
+
+		            </div>
+
+		        {% endfor %}
+
+	    <button type="submit" class="btn btn-primary" name= "button"> Editar </button>
+		  <a href="{% url 'display_products'%}"><button class="btn btn-secondary">Cancelar</button></a>
+
+	  </div>
+		</main>
+	</form>
+
+
+
+</div>
+    {% endblock %}

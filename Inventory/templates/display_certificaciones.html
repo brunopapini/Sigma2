@@ -1,0 +1,143 @@
+{% extends 'index.html' %}
+
+{% block body %}
+
+<!-- Container 2 level  Especifico para cada Grupo-- DISPLAY CERTIFICACIONES-->
+<style>
+
+
+.CriticoRojo {
+  color: #FF0000;
+}
+
+.CriticoVerde {
+  color: #33FF3C;
+}
+
+.CriticoNaranja {
+  color: #FF9F33;
+}
+
+.CriticoAzul {
+  color: #140C85;
+}
+
+.CriticoMarron {
+  color: #835521;
+}
+
+.CriticoNegro {
+  color: #050505;
+}
+
+</style>
+
+<div class="container-fluid ">
+
+     <div class="row justify-content-md-center">
+     <div class="row">
+
+
+        <div class="col-12">
+            <div class="container mb-3 mt-3">
+                <h5 class="text-center ">CERTIFICACIONES</h5>
+
+            <table class="table table-striped table-bordered mydatatable " style="width:100%">
+
+               <thead>
+                    <tr>
+
+                        <th>Fecha</th>
+                        <th>Numero</th>
+                        <th>Cliente o Proveedor</th>
+                        <th>Orden de Compra</th>
+                        <th>Estado</th>
+                        <th>Observaciones</th>
+                        <th>Sistema</th>
+                        <th>Operaciones</th>
+
+
+                </thead>
+
+                <tbody>
+	                {% for item in items %}
+
+                    <tr>
+
+                        <td nowrap>{{item.Fecha| date:"d/m/Y"}}</td>
+                        <td>{{item.Numero}}</td>
+                        <td>{{item.Cliente_o_Proveedor}}</td>
+                        <td>{{item.Orden_de_Compra_Nro}}</td>
+                        <td nowrap>
+                        {% if item.Estado == "PREPARANDO CERTIFICACION" %}
+
+
+                            <div class="Status CriticoRojo">
+
+                        {% elif item.Estado == "FIRMADO" %}
+
+                            <div class="Status CriticoRojo">
+
+                        {% elif item.Estado == "FACTURADO" %}
+
+                            <div class="Status CriticoAzul">
+
+
+                        {% elif item.Estado == "COBRADO" %}
+
+                            <div class="Status CriticoVerde">
+
+                        {% else %}
+
+                            <div class="Status CriticoNegro">
+
+                        {% endif %}
+
+                                 {{ item.Estado }}
+
+                            </div>
+
+                            </td>
+
+
+                        <td>{{item.Observaciones}}</td>
+
+                        <td>{{item.Sistema}}</td>
+
+
+                        <td>
+                            <a href= '{% url 'edit_certificacion' item.pk %}'
+                            <i class="fas fa-edit"></i></a>
+                                <a >&nbsp </a>
+                                <a >&nbsp </a>
+
+
+                            <a href= '{% url 'delete_certificacion' item.pk %}'
+
+                            <i class="fas fa-trash" onclick="return confirm('¿Quiere eliminar esta Certificacion?');" </i>
+                             </a>
+
+                            <a >&nbsp </a>
+
+
+
+                        </td>
+
+                    </tr>
+	{% endfor %}
+
+
+</tbody>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+    </div>
+</div>
+
+
+{% endblock %}

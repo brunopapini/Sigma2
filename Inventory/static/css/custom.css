@@ -1,0 +1,55 @@
+/* change the background color */
+.navbar-light {
+    background-color: #f6f4f4;
+}
+.navbar{
+  background-color: #f6f4f4 !important;
+}
+
+.nav-link {
+color: black;
+}
+
+
+
+.CriticoRojo {
+  color: #FF0000;
+}
+
+.CriticoVerde {
+  color: #33FF3C;
+}
+
+.CriticoNaranja {
+  color: #FF9F33;
+}
+
+.CriticoAzul {
+  color: #140C85;
+}
+
+.CriticoMarron {
+  color: #835521;
+}
+
+.CriticoNegro {
+  color: #050505;
+}
+
+
+
+
+
+table, th, td {
+  word-wrap: break-word;
+
+}
+
+
+
+font-size: 1rem;
+font-weight: 400;
+line-height: 1.5;
+color: #212529;
+text-align: left;
+box-sizing: border-box;

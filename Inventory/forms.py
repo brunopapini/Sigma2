@@ -125,11 +125,6 @@ class RemitoForm(forms.ModelForm):
 # Form de Certificaciones
 class CertificacionesForm(forms.ModelForm):
 
-    Fecha = forms.DateField(
-        input_formats= '%d/%m/%y'
-
-    )
-
     Observaciones = forms.CharField(widget=forms.TextInput(attrs={'size': '20'}))
 
     def __init__(self, *args, **kwargs):

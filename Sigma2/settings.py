@@ -139,5 +139,3 @@ TEMPLATE_DIRS = (
 )
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
-DATE_INPUT_FORMATS = ['%d-%m-%y']

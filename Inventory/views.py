@@ -3,6 +3,7 @@ from django.db.models import Sum
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
 
 from .forms import *
 from django.views.generic.edit import CreateView
@@ -102,7 +103,6 @@ def add_products(request):
 def add_clients(request):
     if request.method == "POST":
         form = ClienteForm(request.POST)
-
         if form.is_valid():
             form.save()
             return redirect('display_clients')
@@ -113,6 +113,8 @@ def add_clients(request):
 
 
 # add remito:
+@method_decorator(login_required, name='dispatch')
+@method_decorator(user_passes_test, name='dispatch')
 class RemitoCreate(CreateView):
     model = Remito
     template_name = 'add_remitos.html'

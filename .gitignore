@@ -1,0 +1,10 @@
+# File types #
+##############
+*.pyc
+*~
+__pycache__
+
+# Specific files #
+##################
+Sigma2/settings.py
+Sigma2/wsgi.py

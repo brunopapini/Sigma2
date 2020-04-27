@@ -18,12 +18,12 @@
 
                 <thead>
                     <tr>
-                        <th>Id</th>
-                        <th>tipo</th>
+                        <th>Movimiento</th>
+                        <th>N° Remito</th>
+                        <th>Fecha</th>
+                        <th>Tipo</th>
                         <th>Producto</th>
                         <th>Unidades</th>
-                        <th>Fecha</th>
-                        <th>Numero de Remito</th>
                         <th>Cliente</th>
                         <th>Orden de Compra</th>
                     </tr>
@@ -35,11 +35,11 @@
 
                         <tr>
                             <td nowrap>{{item.id}}</td>
+                            <td nowrap>{{item.Remito.Numero}}</td>
+                            <td nowrap>{{item.Remito.Fecha| date:"D d M Y" }}</td>
                             <td nowrap>{{item.tipo}}</td>
                             <td nowrap>{{item.producto}}</td>
                             <td nowrap>{{item.unidad}}</td>
-                            <td nowrap>{{item.Remito.Fecha| date:"D d M Y" }}</td>
-                            <td nowrap>{{item.Remito.Numero}}</td>
                             <td nowrap>{{item.Remito.Cliente_o_Proveedor}}</td>
                             <td nowrap>{{item.Remito.Orden_de_Compra_Nro}}</td>
 

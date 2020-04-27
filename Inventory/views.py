@@ -171,12 +171,12 @@ def edit_producto(request, pk):
     item = get_object_or_404(Producto, pk=pk)
 
     if request.method == "POST":
-        form = AddProductoForm(request.POST, instance=item)
+        form = EditProductoForm(request.POST, instance=item)
         if form.is_valid():
             form.save()
             return redirect('display_products')
     else:
-        form = AddProductoForm(instance=item)
+        form = EditProductoForm(instance=item)
 
     return render(request, 'edit_producto.html', {'form': form})
 

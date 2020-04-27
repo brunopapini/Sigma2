@@ -28,16 +28,16 @@ class ProductoForm(forms.ModelForm):
             'procedencia': TextInput(attrs={'class': 'form-control'}),
             'stock': TextInput(attrs={'class': 'form-control'}),
             'stockCritico': TextInput(attrs={'class': 'form-control'}),
-            'Vencimiento': TextInput(attrs={'class': 'form-control', 'placeholder':'Ingresar Fecha en formato dd-mm-aa'}),
+            'Vencimiento': TextInput(attrs={'class': 'form-control', 'placeholder':'Ingresar Fecha en formato mm/dd/aa'}),
             'asterisco': forms.Select(attrs={'class': 'form-control'}),
             'Observaciones': TextInput(attrs={'class': 'form-control'}),
 
         }
 
 
-# Form de añadir Productos
+# Form de editar Productos
 
-class AddProductoForm(forms.ModelForm):
+class EditProductoForm(forms.ModelForm):
     class Meta:
         model = Producto
         fields = (

@@ -1,10 +1,9 @@
 from django.db import transaction
 from django.db.models import Sum
-from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect, get_object_or_404, reverse
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
-
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from .forms import *
 from django.views.generic.edit import CreateView
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -113,13 +112,15 @@ def add_clients(request):
 
 
 # add remito:
+#@user_passes_test(is_member, login_url='index')
 @method_decorator(login_required, name='dispatch')
-@method_decorator(user_passes_test, name='dispatch')
-class RemitoCreate(CreateView):
+class RemitoCreate(PermissionRequiredMixin,CreateView):
     model = Remito
     template_name = 'add_remitos.html'
     form_class = RemitoForm
     success_url = None
+
+    permission_required = 'remitos.add_choice'
 
     def get_context_data(self, **kwargs):
         data = super(RemitoCreate, self).get_context_data(**kwargs)

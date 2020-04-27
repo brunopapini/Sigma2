@@ -1,8 +1,6 @@
-# File types #
-##############
 *.pyc
 *~
-__pycache__
+*__pycache__*
 
 # Specific files #
 ##################

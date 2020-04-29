@@ -1,4 +1,4 @@
-
+/* homepage*/
 body{
     margin-top:20px;
     background:#FAFAFA;
@@ -49,7 +49,7 @@ body{
 .f-right {
     float: right;
 }
-
+/* fin homepage*/
 
 
 
@@ -65,5 +65,31 @@ body{
 color: black;
 }
 
+/* change the background color */
 
 
+/* estados */
+.CriticoRojo {
+  color: #FF0000;
+}
+
+.CriticoVerde {
+  color: #33FF3C;
+}
+
+.CriticoNaranja {
+  color: #FF9F33;
+}
+
+.CriticoAzul {
+  color: #140C85;
+}
+
+.CriticoMarron {
+  color: #835521;
+}
+
+.CriticoNegro {
+  color: #050505;
+}
+/* fin estados */

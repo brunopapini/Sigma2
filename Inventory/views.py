@@ -22,6 +22,28 @@ def index(request):
     return render(request, 'index.html')
 
 
+####Vista de Homepage#####
+@login_required(login_url='/admin/login/?next=/admin/')
+def homepage(request):
+    return render(request, 'homepage.html')
+
+###charts###
+def population_chart(request):
+    labels = []
+    data = []
+
+    queryset = City.objects.values('country__name').annotate(country_population=Sum('population')).order_by(
+        '-country_population')
+    for entry in queryset:
+        labels.append(entry['country__name'])
+        data.append(entry['country_population'])
+
+    return JsonResponse(data={
+        'labels': labels,
+        'data': data,
+    })
+
+
 ####################--------------------VISTAS PARA MOSTRAR OBJECTOS----------------------------###################
 
 # display products

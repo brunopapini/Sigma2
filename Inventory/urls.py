@@ -9,9 +9,11 @@ from django.contrib.auth import views as auth_views
 urlpatterns=[
 	#URL RAIZ
 	url(r'^$', index, name= 'index'),
+	#url Homepage
+	url(r'^homepage$', homepage, name= "homepage"),
+
 	#URL ADMIN
 	path('admin/', auth_views.LoginView.as_view(), name= "admin"),
-
 
 
 	#display products

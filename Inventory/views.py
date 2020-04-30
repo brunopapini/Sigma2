@@ -1,5 +1,6 @@
 from django.db import transaction
 from django.db.models import Sum
+from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
@@ -31,14 +32,17 @@ def homepage(request):
 def population_chart(request):
     labels = []
     data = []
-
-    queryset = City.objects.values('country__name').annotate(country_population=Sum('population')).order_by(
-        '-country_population')
+    queryset = Movimientos.objects.values('producto__producto').annotate(Sum('Cantidad')).order_by('-Cantidad__sum')[:10]
+    queryset2 = Movimientos.objects.values('producto__stock').annotate(Sum('Cantidad')).order_by(
+            '-Cantidad__sum')[:10]
     for entry in queryset:
-        labels.append(entry['country__name'])
-        data.append(entry['country_population'])
+        labels.append(entry['producto__producto'])
+    for entry in queryset2:
+        data.append(entry['producto__stock'])
+
 
     return JsonResponse(data={
+
         'labels': labels,
         'data': data,
     })

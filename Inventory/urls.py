@@ -11,6 +11,9 @@ urlpatterns=[
 	url(r'^$', index, name= 'index'),
 	#url Homepage
 	url(r'^homepage$', homepage, name= "homepage"),
+	#
+	path('population-chart/', views.population_chart, name='population-chart'),
+
 
 	#URL ADMIN
 	path('admin/', auth_views.LoginView.as_view(), name= "admin"),

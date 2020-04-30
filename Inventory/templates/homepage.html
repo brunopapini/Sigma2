@@ -8,7 +8,7 @@
 
 <div class="container fluid mt-4">
   <div class="col-lg-12 ">
-		<h1>CRM SIGMA <small>Sistema de Gestión de Inventarios</small></h1>
+		<h1>CRM SIGMA <small>Dashboard</small></h1>
   </div>
     </div>
 
@@ -60,9 +60,17 @@
   <div class="container fluid mt-4">
        <div class="row">
 
-            <div class="col md-5">
+            <!--div class="col md-5">
          <canvas id="myChart" width="300" height="150"></canvas>
-            </div>
+            </div-->
+
+           <div id="container" style="width: 75%;">
+         <canvas id="population-chart" data-url="{% url 'population-chart' %}"></canvas>
+           </div>
+
+
+
+
             <div class="col md-5">
         <div class="panel panel-default">
                   <div class="panel-heading"><h4>Remitos</h4></div>

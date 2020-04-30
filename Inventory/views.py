@@ -26,7 +26,41 @@ def index(request):
 ####Vista de Homepage#####
 @login_required(login_url='/admin/login/?next=/admin/')
 def homepage(request):
-    return render(request, 'homepage.html')
+
+    remitos=Remito.objects.all().count()
+
+    ingresos=Remito.objects.filter(Estado= 'INGRESO RECIBIDO').count()
+    salidas= remitos-ingresos
+
+    ajuste_stock= Remito.objects.filter(Estado= 'AJUSTE STOCK').count()
+
+    retirado = Remito.objects.filter(Estado='RETIRADO').count()
+    retirado_porcentaje = (retirado*100/salidas)
+
+    entregado = Remito.objects.filter(Estado='ENTREGADO').count()
+    entregado_porcentaje = (entregado*100/salidas)
+
+    preparando = Remito.objects.filter(Estado='PREPARANDO REMITO').count()
+    preparando_porcentaje = (preparando*100/salidas)
+
+    cobrado = Remito.objects.filter(Estado='COBRADO').count()
+    cobrado_porcentaje = (cobrado*100/salidas)
+
+
+
+    context = {
+
+        'preparando': preparando_porcentaje,
+        'retirado' : retirado_porcentaje,
+        'entregado' : entregado_porcentaje,
+        'cobrado': cobrado_porcentaje,
+        'ingresos': ingresos,
+
+
+    }
+
+
+    return render(request, 'homepage.html',context)
 
 ###charts###
 def population_chart(request):

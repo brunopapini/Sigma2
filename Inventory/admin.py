@@ -15,8 +15,11 @@ from django.shortcuts import redirect
 
 ########---------------CLASE CLIENTE PROVEEDOR DE ADMIN------------#########
 @admin.register(Cliente_Proveedor)
-class Cliente_ProveedorAdmin(admin.ModelAdmin):
-    search_fields = ['nombre']
+class ViewAdminProducto(ImportExportModelAdmin):
+
+    fields=('tipo','nombre','direccion','telefono','e_mail')
+
+    search_fields=['nombre']
 
 #######---------------CLASE PRODUCTO DE ADMIN----------------------########
 @admin.register(Producto)

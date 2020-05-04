@@ -127,7 +127,7 @@ def display_remitos(request):
     }
     return render(request, 'display_remitos.html', context)
 
-    # display certificaciones
+# display certificaciones
 @login_required(login_url='/admin/login/?next=/admin/')
 def display_certificaciones(request):
     items = Certificaciones.objects.all()

@@ -91,7 +91,7 @@ class RemitosResource(resources.ModelResource):
 
     class Meta:
         model = Remito
-        import_id_fields = ('Numero',)
+        exclude = ('id',)
         #aqui registro los movimientos y linkeo la opcion de exportacion con la clase definida arriba Movimientos Resource.
         fields = ('Fecha',
                   'Numero',

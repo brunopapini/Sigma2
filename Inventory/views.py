@@ -46,6 +46,9 @@ def homepage(request):
     cobrado = Remito.objects.filter(Estado='COBRADO').count()
     cobrado_porcentaje = (cobrado*100/salidas)
 
+    facturado = Remito.objects.filter(Estado='FACTURADO').count()
+    facturado_porcentaje = (facturado * 100 / salidas)
+
 
 
     context = {
@@ -54,7 +57,9 @@ def homepage(request):
         'retirado' : retirado_porcentaje,
         'entregado' : entregado_porcentaje,
         'cobrado': cobrado_porcentaje,
+        'facturado': facturado_porcentaje,
         'ingresos': ingresos,
+
 
 
     }

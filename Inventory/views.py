@@ -8,6 +8,7 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from .forms import *
 from django.views.generic.edit import CreateView
 from django.contrib.auth.decorators import login_required, user_passes_test
+from datetime import datetime, timedelta
 
 
 ##########___Funcion para chequear a que grupo pertenece________#########
@@ -26,71 +27,79 @@ def index(request):
 ####Vista de Homepage#####
 @login_required(login_url='/admin/login/?next=/admin/')
 def homepage(request):
+    # cuenta de remitos
+    remitos = Remito.objects.all().count()
 
-    #cuenta de remitos
-    remitos=Remito.objects.all().count()
+    # ingresos de remitos
+    ingresos = Remito.objects.filter(Estado='INGRESO RECIBIDO').count()
+    salidas = remitos - ingresos
 
-    #ingresos de remitos
-    ingresos=Remito.objects.filter(Estado= 'INGRESO RECIBIDO').count()
-    salidas= remitos-ingresos
-
-    #retirados
+    # retirados
     retirado = Remito.objects.filter(Estado='RETIRADO').count()
-    retirado_porcentaje = (retirado*100/salidas)
+    retirado_porcentaje = (retirado * 100 / salidas)
 
-    #entregados
+    # entregados
     entregado = Remito.objects.filter(Estado='ENTREGADO').count()
-    entregado_porcentaje = (entregado*100/salidas)
+    entregado_porcentaje = (entregado * 100 / salidas)
 
-    #preparando
+    # preparando
     preparando = Remito.objects.filter(Estado='PREPARANDO REMITO').count()
-    preparando_porcentaje = (preparando*100/salidas)
+    preparando_porcentaje = (preparando * 100 / salidas)
 
-    #cobrados
+    # cobrados
     cobrado = Remito.objects.filter(Estado='COBRADO').count()
-    cobrado_porcentaje = (cobrado*100/salidas)
+    cobrado_porcentaje = (cobrado * 100 / salidas)
 
-    #facturados
+    # facturados
     facturado = Remito.objects.filter(Estado='FACTURADO').count()
     facturado_porcentaje = (facturado * 100 / salidas)
 
-    #productos criticos:
-    productos= Producto.objects.all().count()
-    criticos = Producto.objects.filter(Critico= "Critico").count()
+    # productos criticos:
+    productos = Producto.objects.all().count()
+    criticos = Producto.objects.filter(Critico="Critico").count()
 
+    # remitos ultimos:
+    #one_week_ago = datetime.today() - timedelta(days=7)
+    #remitos_ultimos = Remito.objects.filter(Fecha=one_week_ago).count()
 
+    #movimientos:
+    movimientos= Movimientos.objects.all().count()
 
+    #certificaciones:
+    certificaciones= Certificaciones.objects.all().count()
 
     context = {
 
+        'remitos': remitos,
         'preparando': preparando_porcentaje,
-        'retirado' : retirado_porcentaje,
-        'entregado' : entregado_porcentaje,
+        'retirado': retirado_porcentaje,
+        'entregado': entregado_porcentaje,
         'cobrado': cobrado_porcentaje,
         'facturado': facturado_porcentaje,
         'ingresos': ingresos,
-        'productos':productos,
-        'criticos': criticos
-
-
+        'productos': productos,
+        'criticos': criticos,
+        #'remitos_ultimos': remitos_ultimos,
+        'movimientos': movimientos,
+        'certificaciones': certificaciones,
 
     }
 
+    return render(request, 'homepage.html', context)
 
-    return render(request, 'homepage.html',context)
 
 ###charts###
 def population_chart(request):
     labels = []
     data = []
-    queryset = Movimientos.objects.values('producto__producto').annotate(Sum('Cantidad')).order_by('-Cantidad__sum')[:10]
+    queryset = Movimientos.objects.values('producto__producto').annotate(Sum('Cantidad')).order_by('-Cantidad__sum')[
+               :10]
     queryset2 = Movimientos.objects.values('producto__stock').annotate(Sum('Cantidad')).order_by(
-            '-Cantidad__sum')[:10]
+        '-Cantidad__sum')[:10]
     for entry in queryset:
         labels.append(entry['producto__producto'])
     for entry in queryset2:
         data.append(entry['producto__stock'])
-
 
     return JsonResponse(data={
 
@@ -144,6 +153,7 @@ def display_remitos(request):
     }
     return render(request, 'display_remitos.html', context)
 
+
 # display certificaciones
 @login_required(login_url='/admin/login/?next=/admin/')
 def display_certificaciones(request):
@@ -189,9 +199,9 @@ def add_clients(request):
 
 
 # add remito:
-#@user_passes_test(is_member, login_url='index')
+# @user_passes_test(is_member, login_url='index')
 @method_decorator(login_required, name='dispatch')
-class RemitoCreate(PermissionRequiredMixin,CreateView):
+class RemitoCreate(PermissionRequiredMixin, CreateView):
     model = Remito
     template_name = 'add_remitos.html'
     form_class = RemitoForm

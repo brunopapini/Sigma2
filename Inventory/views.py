@@ -96,6 +96,7 @@ def population_chart(request):
                :10]
     queryset2 = Movimientos.objects.values('producto__stock').annotate(Sum('Cantidad')).order_by(
         '-Cantidad__sum')[:10]
+
     for entry in queryset:
         labels.append(entry['producto__producto'])
     for entry in queryset2:

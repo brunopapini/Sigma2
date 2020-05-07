@@ -27,27 +27,37 @@ def index(request):
 @login_required(login_url='/admin/login/?next=/admin/')
 def homepage(request):
 
+    #cuenta de remitos
     remitos=Remito.objects.all().count()
 
+    #ingresos de remitos
     ingresos=Remito.objects.filter(Estado= 'INGRESO RECIBIDO').count()
     salidas= remitos-ingresos
 
-    ajuste_stock= Remito.objects.filter(Estado= 'AJUSTE STOCK').count()
-
+    #retirados
     retirado = Remito.objects.filter(Estado='RETIRADO').count()
     retirado_porcentaje = (retirado*100/salidas)
 
+    #entregados
     entregado = Remito.objects.filter(Estado='ENTREGADO').count()
     entregado_porcentaje = (entregado*100/salidas)
 
+    #preparando
     preparando = Remito.objects.filter(Estado='PREPARANDO REMITO').count()
     preparando_porcentaje = (preparando*100/salidas)
 
+    #cobrados
     cobrado = Remito.objects.filter(Estado='COBRADO').count()
     cobrado_porcentaje = (cobrado*100/salidas)
 
+    #facturados
     facturado = Remito.objects.filter(Estado='FACTURADO').count()
     facturado_porcentaje = (facturado * 100 / salidas)
+
+    #productos criticos:
+    productos= Producto.objects.all().count()
+    criticos = Producto.objects.filter(Critico= "Critico").count()
+
 
 
 
@@ -59,6 +69,8 @@ def homepage(request):
         'cobrado': cobrado_porcentaje,
         'facturado': facturado_porcentaje,
         'ingresos': ingresos,
+        'productos':productos,
+        'criticos': criticos
 
 
 

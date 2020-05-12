@@ -3,9 +3,9 @@ first commit of app
 
 Creation of a Warehouse Control System for Small and Medium Enterprise.
 
-Backend: Mysql
-Framework: Django
-Front : Bootstrap
+Database: Mysql
+Backend: Django, Python
+Front : Bootstrap, HTML, CSS, JS
 
 
 

@@ -19,7 +19,7 @@ def is_member(user):
 
 ####Vistas de pagina web##########
 
-@login_required(login_url='/admin/login/?next=/admin/')
+@login_required(login_url='/admin/login/?next=/')
 def index(request):
     return render(request, 'index.html')
 

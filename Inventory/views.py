@@ -8,7 +8,7 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from .forms import *
 from django.views.generic.edit import CreateView
 from django.contrib.auth.decorators import login_required, user_passes_test
-from datetime import datetime, timedelta
+
 
 
 ##########___Funcion para chequear a que grupo pertenece________#########
@@ -200,15 +200,17 @@ def add_clients(request):
 
 
 # add remito:
-# @user_passes_test(is_member, login_url='index')
+
 @method_decorator(login_required, name='dispatch')
+
 class RemitoCreate(PermissionRequiredMixin, CreateView):
+
     model = Remito
     template_name = 'add_remitos.html'
     form_class = RemitoForm
     success_url = None
 
-    permission_required = 'remitos.add_choice'
+    permission_required ='Inventory.add_remito'
 
     def get_context_data(self, **kwargs):
         data = super(RemitoCreate, self).get_context_data(**kwargs)

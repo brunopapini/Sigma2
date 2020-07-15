@@ -170,7 +170,7 @@ def display_certificaciones(request):
 
 # add products
 @login_required(login_url='/admin/login/?next=/')
-@user_passes_test(is_member, login_url='index')
+@user_passes_test(is_member, login_url='homepage')
 def add_products(request):
     if request.method == "POST":
         form = ProductoForm(request.POST)
@@ -186,7 +186,7 @@ def add_products(request):
 
 # add clients
 @login_required(login_url='/admin/login/?next=/')
-@user_passes_test(is_member, login_url='index')
+@user_passes_test(is_member, login_url='homepage')
 def add_clients(request):
     if request.method == "POST":
         form = ClienteForm(request.POST)
@@ -236,7 +236,7 @@ class RemitoCreate(PermissionRequiredMixin, CreateView):
 # add certificacion:
 
 @login_required(login_url='/admin/login/?next=/')
-@user_passes_test(is_member, login_url='index')
+@user_passes_test(is_member, login_url='homepage')
 def add_certificaciones(request):
     if request.method == "POST":
         form = CertificacionesForm(request.POST)
@@ -254,7 +254,7 @@ def add_certificaciones(request):
 
 # edit products
 @login_required(login_url='/admin/login/?next=/')
-@user_passes_test(is_member, login_url='index')
+@user_passes_test(is_member, login_url='homepage')
 def edit_producto(request, pk):
     item = get_object_or_404(Producto, pk=pk)
 
@@ -271,7 +271,7 @@ def edit_producto(request, pk):
 
 # edit clients
 @login_required(login_url='/admin/login/?next=/')
-@user_passes_test(is_member, login_url='index')
+@user_passes_test(is_member, login_url='homepage')
 def edit_clients(request, pk):
     item = get_object_or_404(Cliente_Proveedor, pk=pk)
 
@@ -288,7 +288,7 @@ def edit_clients(request, pk):
 
 # edit remitos
 @login_required(login_url='/admin/login/?next=/')
-@user_passes_test(is_member, login_url='index')
+@user_passes_test(is_member, login_url='homepage')
 def edit_remito(request, pk):
     item = get_object_or_404(Remito, pk=pk)
 
@@ -305,7 +305,7 @@ def edit_remito(request, pk):
 
 # edit certificaciones
 @login_required(login_url='/admin/login/?next=/')
-@user_passes_test(is_member, login_url='index')
+@user_passes_test(is_member, login_url='homepage')
 def edit_certificacion(request, pk):
     item = get_object_or_404(Certificaciones, pk=pk)
 
@@ -324,7 +324,7 @@ def edit_certificacion(request, pk):
 
 # eliminar productos
 @login_required(login_url='/admin/login/?next=/')
-@user_passes_test(is_member, login_url='index')
+@user_passes_test(is_member, login_url='homepage')
 def delete_producto(request, pk):
     Producto.objects.filter(id=pk).delete()
     items = Producto.objects.all()
@@ -338,7 +338,7 @@ def delete_producto(request, pk):
 
 # eliminar clientes
 @login_required(login_url='/admin/login/?next=/')
-@user_passes_test(is_member, login_url='index')
+@user_passes_test(is_member, login_url='homepage')
 def delete_clients(request, pk):
     Cliente_Proveedor.objects.filter(id=pk).delete()
 
@@ -353,7 +353,7 @@ def delete_clients(request, pk):
 
 # eliminar remitos
 @login_required(login_url='/admin/login/?next=/')
-@user_passes_test(is_member, login_url='index')
+@user_passes_test(is_member, login_url='homepage')
 def delete_remito(request, pk):
     Remito.objects.filter(id=pk).delete()
 
@@ -369,7 +369,7 @@ def delete_remito(request, pk):
 
 # eliminar Certificaciones
 @login_required(login_url='/admin/login/?next=/')
-@user_passes_test(is_member, login_url='index')
+@user_passes_test(is_member, login_url='homepage')
 def delete_certificacion(request, pk):
     Certificaciones.objects.filter(id=pk).delete()
 
@@ -385,7 +385,7 @@ def delete_certificacion(request, pk):
 
 ######################-----------IMPRESION DEL REMITO--------------------#############################
 @login_required(login_url='/admin/login/?next=/')
-@user_passes_test(is_member, login_url='index')
+@user_passes_test(is_member, login_url='homepage')
 def imprimir(request, pk):
     item = get_object_or_404(Remito, pk=pk)
 
@@ -406,7 +406,7 @@ def imprimir(request, pk):
 ####################-------------MOSTRAR REMITOS DE CERTIFICACIONES-------------#########################
 
 @login_required(login_url='/admin/login/?next=/')
-@user_passes_test(is_member, login_url='index')
+@user_passes_test(is_member, login_url='homepage')
 def mostrar_remitos_certificacion(request, pk):
     item = get_object_or_404(Certificaciones, pk=pk)
 

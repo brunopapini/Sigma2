@@ -8,7 +8,7 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns=[
 	#URL RAIZ
-	url(r'^$', index, name= 'index'),
+	url(r'^$', homepage, name= 'homepage'),
 	#url Homepage
 	url(r'^homepage$', homepage, name= "homepage"),
 	#

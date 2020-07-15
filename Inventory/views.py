@@ -25,7 +25,7 @@ def index(request):
 
 
 ####Vista de Homepage#####
-@login_required(login_url='/admin/login/?next=/admin/')
+@login_required(login_url='/admin/login/?next=/')
 def homepage(request):
     # cuenta de remitos
     remitos = Remito.objects.all().count()
@@ -112,7 +112,7 @@ def population_chart(request):
 ####################--------------------VISTAS PARA MOSTRAR OBJECTOS----------------------------###################
 
 # display products
-@login_required(login_url='/admin/login/?next=/admin/')
+@login_required(login_url='/admin/login/?next=/')
 def display_products(request):
     items = Producto.objects.all()
     context = {
@@ -123,7 +123,7 @@ def display_products(request):
 
 
 # display clients
-@login_required(login_url='/admin/login/?next=/admin/')
+@login_required(login_url='/admin/login/?next=/')
 def display_clients(request):
     items = Cliente_Proveedor.objects.all()
     context = {
@@ -134,7 +134,7 @@ def display_clients(request):
 
 
 # display movimientos
-@login_required(login_url='/admin/login/?next=/admin/')
+@login_required(login_url='/admin/login/?next=/')
 def display_movimientos(request):
     items = Movimientos.objects.all()
     context = {
@@ -145,7 +145,7 @@ def display_movimientos(request):
 
 
 # display remitos
-@login_required(login_url='/admin/login/?next=/admin/')
+@login_required(login_url='/admin/login/?next=/')
 def display_remitos(request):
     items = Remito.objects.all()
     context = {
@@ -156,7 +156,7 @@ def display_remitos(request):
 
 
 # display certificaciones
-@login_required(login_url='/admin/login/?next=/admin/')
+@login_required(login_url='/admin/login/?next=/')
 def display_certificaciones(request):
     items = Certificaciones.objects.all()
     context = {
@@ -169,7 +169,7 @@ def display_certificaciones(request):
 ##################___________________________VISTAS PARA AÑADIR OBJETOS________________________________############################
 
 # add products
-@login_required(login_url='/admin/login/?next=/admin/')
+@login_required(login_url='/admin/login/?next=/')
 @user_passes_test(is_member, login_url='index')
 def add_products(request):
     if request.method == "POST":
@@ -185,7 +185,7 @@ def add_products(request):
 
 
 # add clients
-@login_required(login_url='/admin/login/?next=/admin/')
+@login_required(login_url='/admin/login/?next=/')
 @user_passes_test(is_member, login_url='index')
 def add_clients(request):
     if request.method == "POST":
@@ -235,7 +235,7 @@ class RemitoCreate(PermissionRequiredMixin, CreateView):
 
 # add certificacion:
 
-@login_required(login_url='/admin/login/?next=/admin/')
+@login_required(login_url='/admin/login/?next=/')
 @user_passes_test(is_member, login_url='index')
 def add_certificaciones(request):
     if request.method == "POST":
@@ -253,7 +253,7 @@ def add_certificaciones(request):
 ##############_____________________________VISTAS PARA EDITAR OBJETOS_________________________________######################
 
 # edit products
-@login_required(login_url='/admin/login/?next=/admin/')
+@login_required(login_url='/admin/login/?next=/')
 @user_passes_test(is_member, login_url='index')
 def edit_producto(request, pk):
     item = get_object_or_404(Producto, pk=pk)
@@ -270,7 +270,7 @@ def edit_producto(request, pk):
 
 
 # edit clients
-@login_required(login_url='/admin/login/?next=/admin/')
+@login_required(login_url='/admin/login/?next=/')
 @user_passes_test(is_member, login_url='index')
 def edit_clients(request, pk):
     item = get_object_or_404(Cliente_Proveedor, pk=pk)
@@ -287,7 +287,7 @@ def edit_clients(request, pk):
 
 
 # edit remitos
-@login_required(login_url='/admin/login/?next=/admin/')
+@login_required(login_url='/admin/login/?next=/')
 @user_passes_test(is_member, login_url='index')
 def edit_remito(request, pk):
     item = get_object_or_404(Remito, pk=pk)
@@ -304,7 +304,7 @@ def edit_remito(request, pk):
 
 
 # edit certificaciones
-@login_required(login_url='/admin/login/?next=/admin/')
+@login_required(login_url='/admin/login/?next=/')
 @user_passes_test(is_member, login_url='index')
 def edit_certificacion(request, pk):
     item = get_object_or_404(Certificaciones, pk=pk)
@@ -323,7 +323,7 @@ def edit_certificacion(request, pk):
 ########___________________________VISTAS PARA ELIMINAR OBJETOS_____________________#######
 
 # eliminar productos
-@login_required(login_url='/admin/login/?next=/admin/')
+@login_required(login_url='/admin/login/?next=/')
 @user_passes_test(is_member, login_url='index')
 def delete_producto(request, pk):
     Producto.objects.filter(id=pk).delete()
@@ -337,7 +337,7 @@ def delete_producto(request, pk):
 
 
 # eliminar clientes
-@login_required(login_url='/admin/login/?next=/admin/')
+@login_required(login_url='/admin/login/?next=/')
 @user_passes_test(is_member, login_url='index')
 def delete_clients(request, pk):
     Cliente_Proveedor.objects.filter(id=pk).delete()
@@ -352,7 +352,7 @@ def delete_clients(request, pk):
 
 
 # eliminar remitos
-@login_required(login_url='/admin/login/?next=/admin/')
+@login_required(login_url='/admin/login/?next=/')
 @user_passes_test(is_member, login_url='index')
 def delete_remito(request, pk):
     Remito.objects.filter(id=pk).delete()
@@ -368,7 +368,7 @@ def delete_remito(request, pk):
 
 
 # eliminar Certificaciones
-@login_required(login_url='/admin/login/?next=/admin/')
+@login_required(login_url='/admin/login/?next=/')
 @user_passes_test(is_member, login_url='index')
 def delete_certificacion(request, pk):
     Certificaciones.objects.filter(id=pk).delete()
@@ -384,7 +384,7 @@ def delete_certificacion(request, pk):
 
 
 ######################-----------IMPRESION DEL REMITO--------------------#############################
-@login_required(login_url='/admin/login/?next=/admin/')
+@login_required(login_url='/admin/login/?next=/')
 @user_passes_test(is_member, login_url='index')
 def imprimir(request, pk):
     item = get_object_or_404(Remito, pk=pk)
@@ -405,7 +405,7 @@ def imprimir(request, pk):
 
 ####################-------------MOSTRAR REMITOS DE CERTIFICACIONES-------------#########################
 
-@login_required(login_url='/admin/login/?next=/admin/')
+@login_required(login_url='/admin/login/?next=/')
 @user_passes_test(is_member, login_url='index')
 def mostrar_remitos_certificacion(request, pk):
     item = get_object_or_404(Certificaciones, pk=pk)

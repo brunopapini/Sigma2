@@ -25,7 +25,7 @@ class Producto(models.Model):  #Producto Clase
     # Metodos de la CLase Producto
     # String Class
     def __str__(self):
-        return "{} ".format(self.producto)
+        return "{}, Stock: {} ".format(self.producto, self.stock)
 
 
     #Metodo que define el metodo de guardado : (campo prducto y campo kg)

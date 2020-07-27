@@ -90,7 +90,7 @@ class Remito(models.Model):
     Valor_Declarado = models.CharField(max_length=100)#valor declarado del remito
     Flete = models.CharField(max_length=20, verbose_name=" Flete a Cargo")#Flete a cargo del remito
     Retira = models.CharField(max_length=20)#Persona o entidad que retira el pedido
-    Observaciones = models.TextField(max_length=30, blank=True)#Comentarios sobre el remito
+    Observaciones = models.TextField(max_length=70, blank=True)#Comentarios sobre el remito
 
     #metodo que define la representacion del modelo
     def __str__(self):  # retorna los strings de:
